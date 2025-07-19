@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/events',
+    baseURL: 'https://mini-event-scheduler-api.vercel.app/events',
     headers: {
       'Content-Type': 'application/json'
     }
