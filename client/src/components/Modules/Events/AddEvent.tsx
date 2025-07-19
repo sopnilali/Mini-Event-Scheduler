@@ -1,9 +1,10 @@
-import  { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import toast from 'react-hot-toast'
 import { useScrollRestoration } from '../../../Shared/useScrollRestoration'
+import { personalKeywords, workKeywords } from '../../../Shared/AiCategoryMatch'
 
 interface EventFormData {
   title: string
@@ -50,13 +51,14 @@ const AddEvent = () => {
     return now.toTimeString().slice(0, 5)
   }
 
+
   // Auto-categorize based on title and notes content
   const categorizeEvent = (title: string, notes: string) => {
     const content = `${title} ${notes}`.toLowerCase()
-    
-    if (content.includes('meeting') || content.includes('project') || content.includes('client')) {
+
+    if (workKeywords.some(keyword => content.includes(keyword))) {
       return 'WORK'
-    } else if (content.includes('birthday') || content.includes('family')) {
+    } else if (personalKeywords.some(keyword => content.includes(keyword))) {
       return 'PERSONAL'
     } else {
       return 'OTHER'
@@ -75,7 +77,7 @@ const AddEvent = () => {
     setDisplayCategory(newCategory)
   }, [title, notes])
 
-    const onSubmit = async (data: EventFormData) => {
+  const onSubmit = async (data: EventFormData) => {
     try {
       // Combine date and time into ISO-8601 DateTime format with Z timezone
       const dateTimeString = `${data.date}T${data.time}:00Z`
@@ -89,7 +91,7 @@ const AddEvent = () => {
       const response = await axiosInstance.post('/', formattedData)
 
       console.log(response.data)
-      
+
       // Show success message and redirect
       toast.success(response.data.message)
       navigate('/events')
@@ -119,16 +121,15 @@ const AddEvent = () => {
               <input
                 type="text"
                 id="title"
-                {...register('title', { 
+                {...register('title', {
                   required: 'Title is required',
                   minLength: {
                     value: 2,
                     message: 'Title must be at least 2 characters'
                   }
                 })}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${
-                  errors.title ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${errors.title ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 placeholder="Enter event title"
               />
               {errors.title && (
@@ -146,12 +147,11 @@ const AddEvent = () => {
                 <input
                   type="date"
                   id="date"
-                  {...register('date', { 
+                  {...register('date', {
                     required: 'Date is required'
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${
-                    errors.date ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${errors.date ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.date && (
                   <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>
@@ -166,12 +166,11 @@ const AddEvent = () => {
                 <input
                   type="time"
                   id="time"
-                  {...register('time', { 
+                  {...register('time', {
                     required: 'Time is required'
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${
-                    errors.time ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${errors.time ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.time && (
                   <p className="mt-1 text-sm text-red-600">{errors.time.message}</p>
@@ -227,7 +226,7 @@ const AddEvent = () => {
                   'Create Event'
                 )}
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => navigate('/events')}
