@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import  { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import DeleteEventModal from './DeleteEventModal'
@@ -20,7 +20,6 @@ const DetailsEvent = () => {
     const navigate = useNavigate()
     const [event, setEvent] = useState<Event | null>(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [isDeleting, setIsDeleting] = useState(false)
     const [isArchiving, setIsArchiving] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [eventToDelete, setEventToDelete] = useState<Event | null>(null)
@@ -126,9 +125,7 @@ const DetailsEvent = () => {
         setEventToDelete(null)
     }
 
-    const handleEventDeleted = (eventId: string) => {
-        navigate('/events')
-    }
+
 
     if (isLoading) {
         return (
@@ -310,8 +307,7 @@ const DetailsEvent = () => {
                                         </button>
                                         <button
                                             onClick={handleDeleteEvent}
-                                            disabled={isDeleting}
-                                            className="w-full bg-red-50 text-red-600 px-4 py-3 rounded-lg font-medium hover:bg-red-100 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                                            className="w-full bg-red-50 text-red-600 px-4 py-3 rounded-lg font-medium hover:bg-red-100 transition-colors flex items-center justify-center gap-2"
                                         >
                                             🗑️ Delete Event
                                         </button>
@@ -327,7 +323,7 @@ const DetailsEvent = () => {
                 isOpen={deleteModalOpen}
                 onClose={closeDeleteModal}
                 event={eventToDelete}
-                onEventDeleted={handleEventDeleted}
+                onEventDeleted={() => navigate('/events')}
             />
         </div>
 

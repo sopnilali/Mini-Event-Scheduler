@@ -1,9 +1,6 @@
-import React from 'react'
-import { useScrollRestoration } from '../../../Shared/useScrollRestoration'
+
 
 const Homepage = () => {
-  // Use the scroll restoration hook
-  useScrollRestoration()
 
   return (
     <div>

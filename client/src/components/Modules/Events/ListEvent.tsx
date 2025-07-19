@@ -1,7 +1,7 @@
-import  { useState, useEffect, useRef } from 'react'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import  { useState, useEffect, } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import { axiosInstance } from '../../../Shared/axiosPublic'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import DeleteEventModal from './DeleteEventModal'
 
 interface Event {
