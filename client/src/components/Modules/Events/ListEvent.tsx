@@ -1,8 +1,9 @@
-import  { useState, useEffect, } from 'react'
+import { useState, useEffect, } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import toast from 'react-hot-toast'
 import DeleteEventModal from './DeleteEventModal'
+
 
 interface Event {
   id: string
@@ -105,8 +106,8 @@ const ListEvent = () => {
   }
 
   const getStatusColor = (status: string) => {
-    return status === 'active' 
-      ? 'bg-green-100 text-green-800' 
+    return status === 'active'
+      ? 'bg-green-100 text-green-800'
       : 'bg-yellow-100 text-yellow-800'
   }
 
@@ -116,23 +117,23 @@ const ListEvent = () => {
       // Find current event to get current archivedStatus
       const currentEvent = events.find(event => event.id === eventId)
       if (!currentEvent) return
-      
+
       // Toggle the archived status
       const newArchivedStatus = !currentEvent.archivedStatus
-      
+
       // Simulate API call
       const response = await axiosInstance.put(`/${eventId}`, {
         archivedStatus: newArchivedStatus
       })
       console.log(response.data)
       await new Promise(resolve => setTimeout(resolve, 500))
-      
-      setEvents(prev => prev.map(event => 
-        event.id === eventId 
+
+      setEvents(prev => prev.map(event =>
+        event.id === eventId
           ? { ...event, archivedStatus: newArchivedStatus }
           : event
       ))
-      
+
       // Show success message
       toast.success(response.data.message)
     } catch (error) {
@@ -160,14 +161,17 @@ const ListEvent = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading events...</p>
+          <p className="text-gray-600">Loading event details...</p>
         </div>
       </div>
     )
   }
 
   return (
+    <>
     <div className="min-h-screen bg-gray-50 py-8">
+
+
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
@@ -180,7 +184,7 @@ const ListEvent = () => {
             </div>
             <button
               onClick={() => navigate('/add-event')}
-              className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-all duration-200 flex items-center gap-2"
+              className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-all duration-200 flex items-center gap-2"
             >
               <span className="text-xl">+</span>
               Add Event
@@ -291,11 +295,11 @@ const ListEvent = () => {
                   {/* Event Header */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
-                     <Link to={`/events/${event.id}`}>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                        {event.title}
-                      </h3>
-                     </Link>
+                      <Link to={`/events/${event.id}`}>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                          {event.title}
+                        </h3>
+                      </Link>
                       <div className="flex items-center gap-2 mb-2">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(event.category)}`}>
                           {event.category}
@@ -346,7 +350,7 @@ const ListEvent = () => {
           </div>
         )}
       </div>
-      
+
       {/* Delete Event Modal */}
       <DeleteEventModal
         isOpen={deleteModalOpen}
@@ -354,8 +358,9 @@ const ListEvent = () => {
         event={eventToDelete}
         onEventDeleted={handleEventDeleted}
       />
- 
+
     </div>
+    </>
   )
 }
 

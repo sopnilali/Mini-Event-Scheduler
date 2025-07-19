@@ -31,9 +31,11 @@ const Header = () => {
     <header className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-5 py-4 flex justify-between items-center min-h-[70px]">
         <div className="flex items-center">
-          <h1 className="text-white text-2xl md:text-3xl font-bold text-shadow-lg">
-          Mini Event Scheduler
-          </h1>
+          <Link to="/">
+            <h1 className="text-white text-2xl md:text-3xl font-bold text-shadow-lg">
+              Mini Event Scheduler
+            </h1>
+          </Link>
         </div>
         
         {/* Desktop Navigation */}
