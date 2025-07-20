@@ -76,7 +76,7 @@ const updateEvent = async (id: string) => {
     });
 
     if (!currentEvent) {
-        throw new AppError(404, "Event not found");
+        throw new AppError(404, "Event not found! ");
     }
 
     // Toggle the archived status

@@ -73,7 +73,7 @@ const updateEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
         where: { id }
     });
     if (!currentEvent) {
-        throw new AppError_1.default(404, "Event not found");
+        throw new AppError_1.default(404, "Event not found! ");
     }
     // Toggle the archived status
     const newArchivedStatus = !currentEvent.archivedStatus;
