@@ -51,7 +51,7 @@ const getAllEvents = (filters, options) => __awaiter(void 0, void 0, void 0, fun
     }
     else {
         // Default sorting
-        orderBy = { date: 'desc' };
+        orderBy = { date: 'asc', time: 'asc' };
     }
     const events = yield prisma_1.default.event.findMany({
         where: Object.assign({}, (category && { category: category })),

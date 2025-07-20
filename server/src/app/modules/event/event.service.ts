@@ -45,7 +45,7 @@ const getAllEvents = async (filters: any, options: any) => {
         ];
     } else {
         // Default sorting
-        orderBy = { date: 'desc' };
+        orderBy = { date: 'asc', time: 'asc' };
     }
 
     const events = await prisma.event.findMany({
