@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import toast from 'react-hot-toast'
-import { useScrollRestoration } from '../../../Shared/useScrollRestoration'
 import { personalKeywords, workKeywords } from '../../../Shared/AiCategoryMatch'
 
 interface EventFormData {
@@ -35,8 +34,6 @@ const AddEvent = () => {
   const notes = watch('notes')
   const [displayCategory, setDisplayCategory] = useState('OTHER')
 
-  // Use the scroll restoration hook
-  useScrollRestoration()
 
 
   // Get current date for default value
