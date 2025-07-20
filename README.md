@@ -5,10 +5,14 @@
 I build full-stack <strong>Mini Event Scheduler</strong> application built with React (frontend) and Node.js with TypeScript (backend). It allows users to create, view, update, and delete events such as meetings or personal reminders. Each event includes:Title, Date & Time, Optional Notes.
 To demonstrate basic AI integration, the app features a smart categorization system that automatically assigns each event a category: "Work," "Personal," or "Other", based on keyword analysis from the event title and notes—simulating simple AI logic.
 
+## Live Link: 
+
+Client Live: https://mini-event-schedulerui.vercel.app
+
 ## ✨ Technology Used ⚙️
 <li> <strong>Frontend:</strong> React with TypeScript, Tailwind CSS</li>
-<li> <strong>Backend:</strong> Node.js with TypeScript, Express, Prisma</li>
-<li> <strong>Database:</strong> PostgreSQL</li>
+<li> <strong>Backend:</strong> Node.js with TypeScript, Express</li>
+<li> <strong>Database:</strong>In Memory</li>
 <li> <strong>API:</strong> RESTful design</li>
 
 ## ✨ Features (Planned & In Progress)
@@ -20,25 +24,6 @@ To demonstrate basic AI integration, the app features a smart categorization sys
 - [x] Search and filtering event
 - [x] Responsive frontend UI (React/vite)
 
-
-## 🧱 **Database Schema**
-
-Use Prisma with UUIDs for all primary keys.
-
-### 1\. **Events Table**
-
-| Field | Type | Description |
-| ---| ---| --- |
-| `id` | UUID | Unique identifier for the event |
-| `title` | String | Name of the event |
-| `date` | DateTime | Event date |
-| `time` | String | event time |
-| `notes` | String | event notes |
-| `archivedStatus` | Bolean | event archived status (true or false) |
-| `category` | Category | 'WORK', 'PERSONAL', 'OTHER' |
-| `createdAt` | DateTime | Auto timestamp when created |
-
-* * *
 
 ### 📦 **API Features & Endpoints**
 
@@ -67,15 +52,15 @@ Use Prisma with UUIDs for all primary keys.
     "message": "Event created successfully",
     "statusCode": 201,
     "data": {
-        "id": "8bd673fe-5e63-4dda-a4ce-20f059f10e3b",
+        "id": "event_3_1753002406284",
         "title": "happy birthday guys",
         "date": "2025-12-10T15:30:00.000Z",
         "time": "12:00",
         "notes": " we are celebrate my birthday",
         "archivedStatus": false,
         "category": "PERSONAL",
-        "createdAt": "2025-07-20T06:58:03.676Z",
-        "updatedAt": "2025-07-20T06:58:03.676Z",
+        "createdAt": "2025-07-20T09:06:46.284Z",
+        "updatedAt": "2025-07-20T09:06:46.284Z",
         "isDeleted": false,
         "categoryReason": "Automatically categorized as PERSONAL based on content analysis"
     }
@@ -95,25 +80,25 @@ Use Prisma with UUIDs for all primary keys.
     "statusCode": 200,
     "data": [
         {
-            "id": "8bd673fe-5e63-4dda-a4ce-20f059f10e3b",
-            "title": "happy birthday guys",
-            "date": "2025-12-10T15:30:00.000Z",
-            "time": "12:00",
-            "notes": " we are celebrate my birthday",
+            "id": "event_2_1753001940764",
+            "title": "Full-Stack Engineering Intern Coding ",
+            "date": "2025-07-17T14:58:00.000Z",
+            "time": "14:58",
+            "notes": "Full-Stack Engineering Intern Coding",
             "archivedStatus": false,
-            "category": "PERSONAL",
-            "createdAt": "2025-07-20T06:58:03.676Z",
-            "updatedAt": "2025-07-20T06:58:03.676Z",
+            "category": "OTHER",
+            "createdAt": "2025-07-20T08:59:00.764Z",
+            "updatedAt": "2025-07-20T08:59:00.764Z",
             "isDeleted": false
         },
-        {...}
-  ]
+    {...}
+]
 }
 ```
 
 * * *
 
-### ✅ **3\.** **`GET /events/8bd673fe-5e63-4dda-a4ce-20f059f10e3b`** **- Get a specific event by ID**
+### ✅ **3\.** **`GET /events/event_3_1753002406284`** **- Get a specific event by ID**
 
 #### 📤 Response Example (200 Ok)
 
@@ -123,15 +108,15 @@ Use Prisma with UUIDs for all primary keys.
     "message": "Event fetched successfully",
     "statusCode": 200,
     "data": {
-        "id": "8bd673fe-5e63-4dda-a4ce-20f059f10e3b",
+        "id": "event_3_1753002406284",
         "title": "happy birthday guys",
         "date": "2025-12-10T15:30:00.000Z",
         "time": "12:00",
         "notes": " we are celebrate my birthday",
-        "archivedStatus": false,
+        "archivedStatus": true,
         "category": "PERSONAL",
-        "createdAt": "2025-07-20T06:58:03.676Z",
-        "updatedAt": "2025-07-20T06:58:03.676Z",
+        "createdAt": "2025-07-20T09:06:46.284Z",
+        "updatedAt": "2025-07-20T09:10:25.607Z",
         "isDeleted": false
     }
 }
@@ -140,7 +125,7 @@ Use Prisma with UUIDs for all primary keys.
 * * *
 
 
-### ✅ **4\.** **`PUT /events/8bd673fe-5e63-4dda-a4ce-20f059f10e3b`** **- Update event archived status to true**
+### ✅ **4\.** **`PUT /events/event_2_1753001940764`** **- Update event archived status to true**
 
 #### 📥  Body Request
 
@@ -156,15 +141,15 @@ Not body any request. Only Hit event id. then update archived status.
     "message": "Event archived status updated successfully",
     "statusCode": 200,
     "data": {
-        "id": "8bd673fe-5e63-4dda-a4ce-20f059f10e3b",
+        "id": "event_3_1753002406284",
         "title": "happy birthday guys",
         "date": "2025-12-10T15:30:00.000Z",
         "time": "12:00",
         "notes": " we are celebrate my birthday",
         "archivedStatus": true,
         "category": "PERSONAL",
-        "createdAt": "2025-07-20T06:58:03.676Z",
-        "updatedAt": "2025-07-20T07:02:45.607Z",
+        "createdAt": "2025-07-20T09:06:46.284Z",
+        "updatedAt": "2025-07-20T09:10:25.607Z",
         "isDeleted": false
     }
 }
