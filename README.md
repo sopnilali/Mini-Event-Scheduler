@@ -1,6 +1,6 @@
-Project Name: 
+# Project Name: Mini Event Scheduler with AI Categorization Task
 
-# Project Overview:
+## Project Overview:
 
 I build full-stack <strong>Mini Event Scheduler</strong> application built with React (frontend) and Node.js with TypeScript (backend). It allows users to create, view, update, and delete events such as meetings or personal reminders. Each event includes:Title, Date & Time, Optional Notes.
 To demonstrate basic AI integration, the app features a smart categorization system that automatically assigns each event a category: "Work," "Personal," or "Other", based on keyword analysis from the event title and notes—simulating simple AI logic.
