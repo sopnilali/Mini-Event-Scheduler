@@ -1,5 +1,5 @@
 import AppError from "../../errors/AppError"
-import prisma from "../../utils/prisma"
+import inMemoryStorage from "../../utils/inMemoryStorage"
 import { categorizeEvent } from "./event.constant"
 
 // create event
@@ -13,14 +13,11 @@ const createEvent = async (eventData: any) => {
     }
 
 
-    const result = await prisma.event.create({
-        data: {
-            title: eventData.title,
-            date: eventData.date,
-            time: eventData.time,
-            notes: eventData.notes,
-            category: categorizeEvent(eventData.title, eventData.notes) as any
-        }
+    const result = await inMemoryStorage.create({
+        title: eventData.title,
+        date: eventData.date,
+        time: eventData.time,
+        notes: eventData.notes
     })
     return { ...result, categoryReason: `Automatically categorized as ${categorizeEvent(title || notes)} based on content analysis` }
 }
@@ -45,7 +42,7 @@ const getAllEvents = async (filters: any, options: any) => {
         orderBy = {  date: 'asc', time: 'asc'  };
     }
 
-    const events = await prisma.event.findMany({
+    const events = await inMemoryStorage.findMany({
         where: {
             ...(category && { category: category as any })
         },
@@ -57,7 +54,7 @@ const getAllEvents = async (filters: any, options: any) => {
 }
 
 const getEventById = async (id: string) => {
-        const event = await prisma.event.findFirst({
+        const event = await inMemoryStorage.findFirst({
           where: {
             id,
             isDeleted: false
@@ -74,7 +71,7 @@ const getEventById = async (id: string) => {
 
 const updateEvent = async (id: string) => {
     // First get the current event to check its archived status
-    const currentEvent = await prisma.event.findUnique({
+    const currentEvent = await inMemoryStorage.findUnique({
         where: { id }
     });
 
@@ -85,7 +82,7 @@ const updateEvent = async (id: string) => {
     // Toggle the archived status
     const newArchivedStatus = !currentEvent.archivedStatus;
 
-    const event = await prisma.event.update({
+    const event = await inMemoryStorage.update({
         where: { id },
         data: {
             archivedStatus: newArchivedStatus
@@ -96,14 +93,14 @@ const updateEvent = async (id: string) => {
 
 const deleteEvent = async (id: string) => {
 
-    const singleEvent = await prisma.event.findUnique({
+    const singleEvent = await inMemoryStorage.findUnique({
         where: { id }
     });
     if (!singleEvent) {
         throw new AppError(404, "Event not found");
     }
 
-    const event = await prisma.event.delete({
+    const event = await inMemoryStorage.delete({
         where: { id }
     });
     return event

@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventService = void 0;
 const AppError_1 = __importDefault(require("../../errors/AppError"));
-const prisma_1 = __importDefault(require("../../utils/prisma"));
+const inMemoryStorage_1 = __importDefault(require("../../utils/inMemoryStorage"));
 const event_constant_1 = require("./event.constant");
 // create event
 const createEvent = (eventData) => __awaiter(void 0, void 0, void 0, function* () {
@@ -22,14 +22,11 @@ const createEvent = (eventData) => __awaiter(void 0, void 0, void 0, function* (
     if (!title || !date || !time) {
         throw new AppError_1.default(400, "Title, date, and time are required");
     }
-    const result = yield prisma_1.default.event.create({
-        data: {
-            title: eventData.title,
-            date: eventData.date,
-            time: eventData.time,
-            notes: eventData.notes,
-            category: (0, event_constant_1.categorizeEvent)(eventData.title, eventData.notes)
-        }
+    const result = yield inMemoryStorage_1.default.create({
+        title: eventData.title,
+        date: eventData.date,
+        time: eventData.time,
+        notes: eventData.notes
     });
     return Object.assign(Object.assign({}, result), { categoryReason: `Automatically categorized as ${(0, event_constant_1.categorizeEvent)(title || notes)} based on content analysis` });
 });
@@ -50,7 +47,7 @@ const getAllEvents = (filters, options) => __awaiter(void 0, void 0, void 0, fun
         // Default sorting
         orderBy = { date: 'asc', time: 'asc' };
     }
-    const events = yield prisma_1.default.event.findMany({
+    const events = yield inMemoryStorage_1.default.findMany({
         where: Object.assign({}, (category && { category: category })),
         skip: options.skip || 0,
         take: options.limit || undefined,
@@ -59,7 +56,7 @@ const getAllEvents = (filters, options) => __awaiter(void 0, void 0, void 0, fun
     return events;
 });
 const getEventById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const event = yield prisma_1.default.event.findFirst({
+    const event = yield inMemoryStorage_1.default.findFirst({
         where: {
             id,
             isDeleted: false
@@ -72,7 +69,7 @@ const getEventById = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const updateEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
     // First get the current event to check its archived status
-    const currentEvent = yield prisma_1.default.event.findUnique({
+    const currentEvent = yield inMemoryStorage_1.default.findUnique({
         where: { id }
     });
     if (!currentEvent) {
@@ -80,7 +77,7 @@ const updateEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // Toggle the archived status
     const newArchivedStatus = !currentEvent.archivedStatus;
-    const event = yield prisma_1.default.event.update({
+    const event = yield inMemoryStorage_1.default.update({
         where: { id },
         data: {
             archivedStatus: newArchivedStatus
@@ -89,13 +86,13 @@ const updateEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return event;
 });
 const deleteEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const singleEvent = yield prisma_1.default.event.findUnique({
+    const singleEvent = yield inMemoryStorage_1.default.findUnique({
         where: { id }
     });
     if (!singleEvent) {
         throw new AppError_1.default(404, "Event not found");
     }
-    const event = yield prisma_1.default.event.delete({
+    const event = yield inMemoryStorage_1.default.delete({
         where: { id }
     });
     return event;
