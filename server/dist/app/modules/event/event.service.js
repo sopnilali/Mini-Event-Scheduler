@@ -44,10 +44,7 @@ const getAllEvents = (filters, options) => __awaiter(void 0, void 0, void 0, fun
     }
     else if (sortBy === 'datetime') {
         // Sort by both date and time
-        orderBy = [
-            { date: sortOrder },
-            { time: sortOrder }
-        ];
+        orderBy = { date: sortOrder, time: sortOrder };
     }
     else {
         // Default sorting

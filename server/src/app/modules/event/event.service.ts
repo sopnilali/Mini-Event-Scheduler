@@ -39,13 +39,10 @@ const getAllEvents = async (filters: any, options: any) => {
         orderBy[sortBy] = sortOrder;
     } else if (sortBy === 'datetime') {
         // Sort by both date and time
-        orderBy = [
-            { date: sortOrder },
-            { time: sortOrder }
-        ];
+        orderBy = { date: sortOrder, time: sortOrder };
     } else {
         // Default sorting
-        orderBy = { date: 'asc', time: 'asc' };
+        orderBy = {  date: 'asc', time: 'asc'  };
     }
 
     const events = await prisma.event.findMany({

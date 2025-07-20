@@ -6,7 +6,7 @@ const calculatePagination = (options) => {
     const limit = Number(options.limit) || 10;
     const skip = (Number(page) - 1) * limit;
     const sortBy = options.sortBy || 'createdAt';
-    const sortOrder = options.sortOrder || 'desc';
+    const sortOrder = options.sortOrder || 'asc';
     return {
         page,
         limit,

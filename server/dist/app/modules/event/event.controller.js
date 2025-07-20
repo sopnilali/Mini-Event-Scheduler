@@ -27,7 +27,7 @@ const createEvent = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0,
 }));
 // get all events
 const getAllEvents = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { sortBy = 'date', sortOrder = 'desc', category } = req.query;
+    const { sortBy = 'date', sortOrder = 'asc', category } = req.query;
     const filters = {
         category: category ? category.toUpperCase() : undefined
     };
