@@ -7,7 +7,6 @@ import AppError from '../errors/AppError';
 import { TErrorSources } from '../interface/errors';
 import handleZodError from './handleZodError';
 import handleDuplicateError from './handleDuplicateError';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) : any => {
@@ -49,15 +48,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) : any => {
         message: err?.message,
       },
     ];
-  } else if ( err instanceof PrismaClientKnownRequestError){
-    message = err.message,
-    errorSources = [
-      {
-        path: '',
-        message: err?.message
-      }
-    ]
-  }
+  } 
 
   //ultimate return
   return res.status(statusCode).json({

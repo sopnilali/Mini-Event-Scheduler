@@ -7,7 +7,6 @@ const zod_1 = require("zod");
 const AppError_1 = __importDefault(require("../errors/AppError"));
 const handleZodError_1 = __importDefault(require("./handleZodError"));
 const handleDuplicateError_1 = __importDefault(require("./handleDuplicateError"));
-const library_1 = require("@prisma/client/runtime/library");
 const globalErrorHandler = (err, req, res, next) => {
     //setting default values
     let statusCode = 500;
@@ -48,15 +47,6 @@ const globalErrorHandler = (err, req, res, next) => {
                 message: err === null || err === void 0 ? void 0 : err.message,
             },
         ];
-    }
-    else if (err instanceof library_1.PrismaClientKnownRequestError) {
-        message = err.message,
-            errorSources = [
-                {
-                    path: '',
-                    message: err === null || err === void 0 ? void 0 : err.message
-                }
-            ];
     }
     //ultimate return
     return res.status(statusCode).json({
