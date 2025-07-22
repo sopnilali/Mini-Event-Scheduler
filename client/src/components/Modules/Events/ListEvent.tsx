@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import toast from 'react-hot-toast'
 import DeleteEventModal from './DeleteEventModal'
+import { Helmet } from 'react-helmet'
 
 
 interface Event {
@@ -167,6 +168,13 @@ const ListEvent = () => {
 
   return (
     <>
+             <Helmet>
+                <meta charSet="utf-8" />
+                <title>All Event | Mini Event Scheduler</title>
+                <meta name="description" content="All Event | Mini Event Scheduler" />
+                <meta name="keywords" content="events, mini event" />
+            </Helmet>
+
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
 
 
