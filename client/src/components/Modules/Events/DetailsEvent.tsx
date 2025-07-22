@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { axiosInstance } from '../../../Shared/axiosPublic'
 import DeleteEventModal from './DeleteEventModal'
 import { toast } from 'react-hot-toast'
+import {Helmet} from "react-helmet";
 
 interface Event {
     id: string
@@ -143,7 +144,7 @@ const DetailsEvent = () => {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center dark:bg-gray-900">
                 <div className="text-center">
-                    <div className="text-gray-400 text-6xl mb-4"> 274c</div>
+                    <div className="text-red-400 text-6xl mb-4">⚠︎</div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 dark:text-gray-100">Event Not Found</h3>
                     <p className="text-gray-600 mb-6 dark:text-gray-400">The event you're looking for doesn't exist or has been removed.</p>
                     <button
@@ -158,6 +159,11 @@ const DetailsEvent = () => {
     }
 
     return (
+        <div>
+           <Helmet>
+                <meta charSet="utf-8" />
+                <title>Event Details | Mini Event Scheduler</title>
+            </Helmet> 
         <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900">
             <div className="container mx-auto px-4">
                 {/* Header */}
@@ -327,6 +333,7 @@ const DetailsEvent = () => {
                 event={eventToDelete}
                 onEventDeleted={() => navigate('/events')}
             />
+        </div>
         </div>
 
     )
