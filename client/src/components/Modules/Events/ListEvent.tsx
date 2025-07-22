@@ -182,7 +182,7 @@ const ListEvent = () => {
             </div>
             <button
               onClick={() => navigate('/add-event')}
-              className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all duration-200 flex items-center gap-2 dark:from-gray-700 dark:to-gray-900 dark:hover:bg-gray-900"
+              className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200  dark:focus:ring-gray-700 transition-all duration-200 flex items-center gap-2 dark:from-gray-700 dark:to-gray-900   dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             >
               <span className="text-xl">+</span>
               Add Event
@@ -276,7 +276,7 @@ const ListEvent = () => {
             {!searchTerm && categoryFilter === 'all' && statusFilter === 'all' && (
               <button
                 onClick={() => navigate('/add-event')}
-                className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
               >
                 Create Your First Event
               </button>
