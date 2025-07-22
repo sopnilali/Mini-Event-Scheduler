@@ -179,7 +179,7 @@ const DetailsEvent = () => {
                                         {getCategoryIcon(event.category)} {event.category}
                                     </span>
                                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${event.archivedStatus ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'}`}>
-                                        {event.archivedStatus ? ' dcc1 Archived' : ' 705 Active'}
+                                        {event.archivedStatus ? ' Archived' : ' ⚡ Active'}
                                     </span>
                                 </div>
                             </div>
@@ -305,13 +305,13 @@ const DetailsEvent = () => {
                                             disabled={isArchiving}
                                             className="w-full bg-yellow-50 text-yellow-600 px-4 py-3 rounded-lg font-medium hover:bg-yellow-100 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800"
                                         >
-                                            {event.archivedStatus ? ' dcc1 Archived' : ' 705 Active'}
+                                            {event.archivedStatus ? '⚡Active' : '  Archive'}
                                         </button>
                                         <button
                                             onClick={handleDeleteEvent}
                                             className="w-full bg-red-50 text-red-600 px-4 py-3 rounded-lg font-medium hover:bg-red-100 transition-colors flex items-center justify-center gap-2 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800"
                                         >
-                                            🗑️ Delete Event
+                                            Delete
                                         </button>
                                     </div>
                                 </div>
