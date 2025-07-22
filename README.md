@@ -7,7 +7,8 @@ To demonstrate basic AI integration, the app features a smart categorization sys
 
 ## Live Link: 
 
-Client Live: https://mini-event-schedulerui.vercel.app
+- [x] Client Live: https://mini-event-schedulerui.vercel.app
+- [x] Server live: https://mini-event-scheduler-api.vercel.app
 
 ## ✨ Technology Used ⚙️
 <li> <strong>Frontend:</strong> React with TypeScript, Tailwind CSS</li>
