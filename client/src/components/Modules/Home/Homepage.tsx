@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import DigitalClock from '../../../Shared/DigitalClock'
 
 const Homepage = () => {
   const features = [
