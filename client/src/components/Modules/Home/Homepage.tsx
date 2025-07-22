@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import DigitalClock from '../../../Shared/DigitalClock'
 
 const Homepage = () => {
   const features = [
@@ -25,73 +26,66 @@ const Homepage = () => {
   ]
 
   return (
-
     <div>
-
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-
-
-
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
-          <div className="absolute inset-0 bg-black/10"></div>
+        <section className="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 text-white dark:from-gray-900 dark:to-gray-800 dark:text-gray-100">
+          <div className="absolute inset-0 bg-black/10 dark:bg-black/40"></div>
           <div className="relative container mx-auto px-5 py-20 lg:py-32">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 Organize Your Events
-                <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90 dark:opacity-80">
                   With Mini Event Scheduler
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto">
+              <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto dark:text-gray-200">
                 Streamline your event planning process with our powerful and intuitive event management platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/add-event"
-                  className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg dark:bg-gray-900 dark:text-indigo-300 dark:hover:bg-gray-800"
                 >
                   Create New Event
                 </Link>
                 <Link
                   to="/events"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300 transform hover:scale-105"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300 transform hover:scale-105 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-900 dark:hover:text-indigo-300"
                 >
                   View All Events
                 </Link>
               </div>
             </div>
           </div>
-
           {/* Decorative Elements */}
-          <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full"></div>
-          <div className="absolute top-1/2 left-5 w-16 h-16 bg-white/10 rounded-full"></div>
+          <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full dark:bg-white/5"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full dark:bg-white/10"></div>
+          <div className="absolute top-1/2 left-5 w-16 h-16 bg-white/10 rounded-full dark:bg-white/5"></div>
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-gray-900">
           <div className="container mx-auto px-5">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 dark:text-gray-100">
                 Why Choose Mini Event Scheduler?
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
                 Experience the perfect blend of simplicity and functionality for all your event management needs.
               </p>
             </div>
-
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+                  className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:from-gray-800 dark:to-gray-900 dark:border-gray-800"
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3 dark:text-gray-100">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed dark:text-gray-300">
                     {feature.description}
                   </p>
                 </div>
@@ -101,24 +95,24 @@ const Homepage = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
+        <section className="py-20 bg-gradient-to-br from-indigo-500 to-purple-600 text-white dark:from-gray-900 dark:to-gray-800 dark:text-gray-100">
           <div className="container mx-auto px-5 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto dark:text-gray-200">
               Join thousands of users who trust Mini Event Scheduler for their event management needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/add-event"
-                className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg dark:bg-gray-900 dark:text-indigo-300 dark:hover:bg-gray-800"
               >
                 Start Creating Events
               </Link>
               <Link
                 to="/events"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300 transform hover:scale-105"
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300 transform hover:scale-105 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-900 dark:hover:text-indigo-300"
               >
                 Browse Events
               </Link>
@@ -127,20 +121,20 @@ const Homepage = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 dark:bg-gray-950">
           <div className="container mx-auto px-5">
             <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-indigo-600 mb-2">100%</div>
-                <div className="text-gray-600">Free to Use</div>
+              <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-900">
+                <div className="text-3xl font-bold text-indigo-600 mb-2 dark:text-indigo-400">100%</div>
+                <div className="text-gray-600 dark:text-gray-300">Free to Use</div>
               </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-indigo-600 mb-2">24/7</div>
-                <div className="text-gray-600">Always Available</div>
+              <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-900">
+                <div className="text-3xl font-bold text-indigo-600 mb-2 dark:text-indigo-400">24/7</div>
+                <div className="text-gray-600 dark:text-gray-300">Always Available</div>
               </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-indigo-600 mb-2">∞</div>
-                <div className="text-gray-600">Unlimited Events</div>
+              <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-900">
+                <div className="text-3xl font-bold text-indigo-600 mb-2 dark:text-indigo-400">∞</div>
+                <div className="text-gray-600 dark:text-gray-300">Unlimited Events</div>
               </div>
             </div>
           </div>

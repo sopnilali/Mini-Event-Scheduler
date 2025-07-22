@@ -41,10 +41,9 @@ const ListEvent = () => {
       setIsLoading(true)
       // Simulate API call with mock data
       const response = await axiosInstance.get('/events')
-      console.log(response.data.data)
       setEvents(response.data.data)
     } catch (error) {
-      console.error('Error fetching events:', error)
+      toast.error('Error fetching events:')
     } finally {
       setIsLoading(false)
     }
@@ -122,10 +121,9 @@ const ListEvent = () => {
       const newArchivedStatus = !currentEvent.archivedStatus
 
       // Simulate API call
-      const response = await axiosInstance.put(`/${eventId}`, {
+      const response = await axiosInstance.put(`/events/${eventId}`, {
         archivedStatus: newArchivedStatus
       })
-      console.log(response.data)
       await new Promise(resolve => setTimeout(resolve, 500))
 
       setEvents(prev => prev.map(event =>
@@ -158,10 +156,10 @@ const ListEvent = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading event details...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 dark:border-indigo-300 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-300">Loading events...</p>
         </div>
       </div>
     )
@@ -169,7 +167,7 @@ const ListEvent = () => {
 
   return (
     <>
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
 
 
       <div className="container mx-auto px-4">
@@ -177,14 +175,14 @@ const ListEvent = () => {
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Events</h1>
-              <p className="text-gray-600">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Events</h1>
+              <p className="text-gray-600 dark:text-gray-300">
                 {filteredEvents.length} of {events.length} events
               </p>
             </div>
             <button
               onClick={() => navigate('/add-event')}
-              className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-all duration-200 flex items-center gap-2"
+              className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all duration-200 flex items-center gap-2 dark:from-gray-700 dark:to-gray-900 dark:hover:bg-gray-900"
             >
               <span className="text-xl">+</span>
               Add Event
@@ -193,11 +191,11 @@ const ListEvent = () => {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Search Events
               </label>
               <input
@@ -205,19 +203,19 @@ const ListEvent = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search by title or notes..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-gray-100"
               />
             </div>
 
             {/* Category Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Category
               </label>
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-gray-100"
               >
                 <option value="all">All Categories</option>
                 <option value="WORK">Work</option>
@@ -228,7 +226,7 @@ const ListEvent = () => {
 
             {/* Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Status
               </label>
               <select
@@ -241,7 +239,7 @@ const ListEvent = () => {
                     setStatusFilter(value === 'true')
                   }
                 }}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-gray-100"
               >
                 <option value="all">All Status</option>
                 <option value="false">Active</option>
@@ -257,7 +255,7 @@ const ListEvent = () => {
                   setCategoryFilter('all')
                   setStatusFilter('all')
                 }}
-                className="w-full bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+                className="w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
               >
                 Clear Filters
               </button>
@@ -267,10 +265,10 @@ const ListEvent = () => {
 
         {/* Events Grid */}
         {filteredEvents.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-            <div className="text-gray-400 text-6xl mb-4">📅</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No events found</h3>
-            <p className="text-gray-600 mb-6">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-12 text-center">
+            <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">📅</div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">No events found</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all'
                 ? 'Try adjusting your filters or search terms.'
                 : 'Get started by creating your first event.'}
@@ -289,22 +287,22 @@ const ListEvent = () => {
             {filteredEvents.map((event) => (
               <div
                 key={event.id}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
               >
                 <div className="p-6">
                   {/* Event Header */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
                       <Link to={`/events/${event.id}`}>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
                           {event.title}
                         </h3>
                       </Link>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(event.category)}`}>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(event.category)}` + ' dark:bg-opacity-30 dark:text-opacity-90 dark:bg-gray-700 dark:text-gray-200'}>
                           {event.category}
                         </span>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(event.archivedStatus ? 'archived' : 'active')}`}>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(event.archivedStatus ? 'archived' : 'active')}` + ' dark:bg-opacity-30 dark:text-opacity-90 dark:bg-gray-700 dark:text-gray-200'}>
                           {event.archivedStatus ? 'Archived' : 'Active'}
                         </span>
                       </div>
@@ -313,33 +311,35 @@ const ListEvent = () => {
 
                   {/* Event Details */}
                   <div className="space-y-3 mb-4">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <span className="text-gray-400">📅</span>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                      <span className="text-gray-400 dark:text-gray-500">📅</span>
                       <span className="text-sm">{formatDate(event.date)}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <span className="text-gray-400">🕒</span>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                      <span className="text-gray-400 dark:text-gray-500">🕒</span>
                       <span className="text-sm">{formatTime(event.time)}</span>
                     </div>
                     {event.notes && (
-                      <div className="flex items-start gap-2 text-gray-600">
-                        <span className="text-gray-400 mt-0.5">📝</span>
+                      <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+                        <span className="text-gray-400 dark:text-gray-500 mt-0.5">📝</span>
                         <span className="text-sm line-clamp-2">{event.notes}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2 pt-4 border-t border-gray-100">
+                  <div className="flex gap-2 pt-4 border-t border-gray-100 dark:border-gray-700">
                     <button
                       onClick={() => handleArchiveEvent(event.id)}
-                      className="flex-1 bg-yellow-50 text-yellow-600 px-3 py-2 rounded-lg text-sm font-medium hover:bg-yellow-100 transition-colors"
+                      className={
+                        `flex-1 bg-yellow-50  text-yellow-600  px-3 py-2 rounded-lg text-sm font-medium hover:bg-yellow-100 dark:hover:bg-yellow-800 transition-colors dark:bg-opacity-30 dark:text-opacity-90 dark:bg-gray-700 dark:text-gray-200`
+                      }
                     >
                       {event.archivedStatus ? 'Archived' : 'Archive'}
                     </button>
                     <button
                       onClick={() => handleDeleteEvent(event)}
-                      className="flex-1 bg-red-50 text-red-600 px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
+                      className="flex-1 bg-red-50  text-red-600  px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-100 dark:hover:bg-red-800 transition-colors dark:bg-opacity-30 dark:text-opacity-90 dark:bg-gray-700 dark:text-gray-200"
                     >
                       Delete
                     </button>

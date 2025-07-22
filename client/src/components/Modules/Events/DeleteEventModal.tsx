@@ -33,7 +33,6 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
     try {
       setIsDeleting(true)
       const response = await axiosInstance.delete(`/events/${event.id}`)
-      console.log(response.data)
       
       onEventDeleted(event.id)
       toast.success(response.data.message)
@@ -89,15 +88,15 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
       
       {/* Modal Container */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-md transform overflow-hidden rounded-xl bg-white shadow-2xl transition-all duration-300">
+        <div className="relative w-full max-w-md transform overflow-hidden rounded-xl bg-white shadow-2xl transition-all duration-300 dark:bg-gray-900 dark:shadow-2xl">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-            <h3 className="text-lg font-semibold text-gray-900">
+          <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Delete Event
             </h3>
             <button
               onClick={onClose}
-              className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+              className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors dark:hover:bg-gray-800 dark:text-gray-300 dark:hover:text-gray-100"
               aria-label="Close modal"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,31 +108,31 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
           {/* Content */}
           <div className="px-6 py-4">
             {/* Warning Icon */}
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-              <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4 dark:bg-red-900">
+              <svg className="h-6 w-6 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
 
             {/* Event Details */}
             <div className="text-center mb-6">
-              <h4 className="text-lg font-medium text-gray-900 mb-2">
+              <h4 className="text-lg font-medium text-gray-900 mb-2 dark:text-gray-100">
                 Are you sure you want to delete this event?
               </h4>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-600 mb-4 dark:text-gray-400">
                 This action cannot be undone. The event will be permanently removed.
               </p>
               
               {/* Event Preview */}
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <div className="bg-gray-50 rounded-lg p-4 mb-4 dark:bg-gray-800">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">{getCategoryIcon(event.category)}</span>
                   <div className="flex-1 text-left">
-                    <h5 className="font-medium text-gray-900">{event.title}</h5>
-                    <p className="text-sm text-gray-600">{event.category}</p>
+                    <h5 className="font-medium text-gray-900 dark:text-gray-100">{event.title}</h5>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{event.category}</p>
                   </div>
                 </div>
-                <div className="space-y-1 text-sm text-gray-600">
+                <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                   <div className="flex items-center gap-2">
                     <span>📅</span>
                     <span>{formatDate(event.date)}</span>
@@ -157,14 +156,14 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
               <button
                 onClick={onClose}
                 disabled={isDeleting}
-                className="flex-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors disabled:opacity-50"
+                className="flex-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors disabled:opacity-50 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 dark:bg-red-800 dark:hover:bg-red-900"
               >
                 {isDeleting ? (
                   <>

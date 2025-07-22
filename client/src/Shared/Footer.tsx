@@ -1,31 +1,31 @@
 
 import { Link } from 'react-router-dom'
+import DigitalClock from './DigitalClock'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 dark:text-gray-100">
                 Mini Event Scheduler
               </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed dark:text-gray-400">
                 Streamline your event management with our intuitive scheduling platform. 
                 Create, organize, and track your events with ease.
               </p>
             </div>
-            
             {/* Social Links */}
             <div className="flex space-x-4">
               <Link 
                 to="https://www.facebook.com/cse.wadud" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
                 aria-label="Facebook"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ const Footer = () => {
               </Link>
               <Link 
                 to="#" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
                 aria-label="Twitter"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -43,7 +43,7 @@ const Footer = () => {
               </Link>
               <Link 
                 to="https://www.linkedin.com/in/ami-abdul-adud/" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
                 aria-label="LinkedIn"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ const Footer = () => {
               </Link>
               <Link 
                 to="https://github.com/sopnilali" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
                 aria-label="GitHub"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -64,12 +64,12 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 dark:text-gray-100">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <Link 
                   to="/events" 
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-gray-600 hover:text-indigo-600 transition-colors duration-200 text-sm dark:text-gray-400 dark:hover:text-indigo-400"
                 >
                   All Events
                 </Link>
@@ -77,7 +77,7 @@ const Footer = () => {
               <li>
                 <Link 
                   to="/add-event" 
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-gray-600 hover:text-indigo-600 transition-colors duration-200 text-sm dark:text-gray-400 dark:hover:text-indigo-400"
                 >
                   Add Event
                 </Link>
@@ -85,7 +85,7 @@ const Footer = () => {
               <li>
                 <Link 
                   to="#" 
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-gray-600 hover:text-indigo-600 transition-colors duration-200 text-sm dark:text-gray-400 dark:hover:text-indigo-400"
                 >
                   Event Categories
                 </Link>
@@ -93,7 +93,7 @@ const Footer = () => {
               <li>
                 <Link 
                   to="#" 
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-gray-600 hover:text-indigo-600 transition-colors duration-200 text-sm dark:text-gray-400 dark:hover:text-indigo-400"
                 >
                   Archived Events
                 </Link>
@@ -103,25 +103,25 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
+            <h4 className="text-lg font-semibold mb-4 dark:text-gray-100">Contact</h4>
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
-                <span>Rajshahi, Bangladesh</span>
+                <span className='text-gray-600 dark:text-gray-400'>Rajshahi, Bangladesh</span>
               </li>
               <li className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
-                <span>+88-1737-055870</span>
+                <span className='text-gray-600 dark:text-gray-400'>+88-1737-055870</span>
               </li>
               <li className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                <span>mdabduladud8@gmail.com</span>
+                <span className='text-gray-600 dark:text-gray-400'>mdabduladud8@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -129,31 +129,32 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="border-t border-gray-300 dark:border-gray-800">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-500 dark:text-gray-400">
               © {currentYear} Mini Event Scheduler. All rights reserved.
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link 
                 to="#" 
-                className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-sm text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
               >
                 Privacy Policy
               </Link>
               <Link 
                 to="#" 
-                className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-sm text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
               >
                 Terms of Service
               </Link>
               <Link 
                 to="#" 
-                className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-sm text-gray-500 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-400 dark:hover:text-indigo-400"
               >
                 Cookie Policy
               </Link>
+              <DigitalClock/>
             </div>
           </div>
         </div>
