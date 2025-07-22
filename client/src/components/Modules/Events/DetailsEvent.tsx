@@ -33,7 +33,7 @@ const DetailsEvent = () => {
     const fetchEventDetails = async () => {
         try {
             setIsLoading(true)
-            const response = await axiosInstance.get(`/${id}`)
+            const response = await axiosInstance.get(`/events/${id}`)
             setEvent(response.data.data)
         } catch (error) {
             console.error('Error fetching event details:', error)

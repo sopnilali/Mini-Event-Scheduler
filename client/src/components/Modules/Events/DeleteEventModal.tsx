@@ -32,7 +32,7 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
 
     try {
       setIsDeleting(true)
-      const response = await axiosInstance.delete(`/${event.id}`)
+      const response = await axiosInstance.delete(`/events/${event.id}`)
       console.log(response.data)
       
       onEventDeleted(event.id)

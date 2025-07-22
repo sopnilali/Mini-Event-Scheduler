@@ -85,7 +85,7 @@ const AddEvent = () => {
         notes: data.notes
       }
 
-      const response = await axiosInstance.post('/', formattedData)
+      const response = await axiosInstance.post('/events', formattedData)
 
       console.log(response.data)
 

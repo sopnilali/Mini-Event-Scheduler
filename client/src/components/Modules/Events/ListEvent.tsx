@@ -40,7 +40,7 @@ const ListEvent = () => {
     try {
       setIsLoading(true)
       // Simulate API call with mock data
-      const response = await axiosInstance.get('/')
+      const response = await axiosInstance.get('/events')
       console.log(response.data.data)
       setEvents(response.data.data)
     } catch (error) {
