@@ -162,7 +162,9 @@ const DetailsEvent = () => {
         <div>
            <Helmet>
                 <meta charSet="utf-8" />
-                <title>Event Details | Mini Event Scheduler</title>
+                <title>{event.title} | Mini Event Scheduler</title>
+                <meta name="description" content={event.notes ? event.notes : event.title} />
+                <meta name="keywords" content={event.category ? event.category : 'events, mini event' } />
             </Helmet> 
         <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900">
             <div className="container mx-auto px-4">
